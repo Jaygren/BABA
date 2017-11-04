@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
+   http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/aop 
+   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+   http://www.springframework.org/schema/tx 
+   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+   http://www.springframework.org/schema/context      
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+   
+   
+   <!-- 
+        注解配置
+        组建扫描 
+        移动事务管理配置 
+    -->
+   <context:annotation-config />
+   <context:component-scan base-package="com.BABA" />
+   <tx:annotation-driven transaction-manager="transactionManager"/>
+ 	
+   <bean name="sf"
+	class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+   <property name="dataSource" ref="ds" />
+	
+        
+		<!-- 注解扫描 -->
+		<!-- 加载pojo类 -->
+		<property name="packagesToScan">
+			<list>
+				<value>com.BABA.*</value>
+			</list>
+		</property>
+ 
+	    <property name="schemaUpdate">  
+	        <value>true</value>  
+	    </property>  
+	    		
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+				hibernate.show_sql=true
+				hbm2ddl.auto=update
+   			</value>
+		</property>
+	</bean>    
+        
+    <context:property-placeholder location="classpath:db.properties" />    
+    <bean name="ds"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${c3p0.driverClass}" />
+		<property name="jdbcUrl" value="${c3p0.jdbcUrl}" />
+		<property name="user" value="${c3p0.user}" />
+		<property name="password" value="${c3p0.password}" />
+		
+		<!--配置连接池初始值 -->  
+        <property name="acquireIncrement" value="${c3p0.acquireIncrement}"/>  
+        <property name="initialPoolSize" value="${c3p0.initialPoolSize}"/>  
+        <!--当最少空闲连接时，连接数小于该值，就会自动申请一些连接 -->  
+        <property name="minPoolSize" value="${c3p0.minPoolSize}"/>  
+        <property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>  
+        <property name="maxPoolSize" value="${c3p0.maxPoolSize}"/>  
+	</bean>
+	
+	<!-- 配置事务管理器（声明式的事务） -->  
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">  
+	    <property name="sessionFactory" ref="sf"></property>  
+	</bean>  
+
+ </beans>
