@@ -1,0 +1,2 @@
+# BABA
+个人的S2SH集成项目，已经完成spring和hibernate的底层配置，dao层和service层的模板开发基本完成
