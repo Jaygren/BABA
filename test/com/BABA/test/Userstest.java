@@ -13,44 +13,45 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.BABA.dao.UsersDao;
 import com.BABA.pojo.Users;
-import com.BABA.service.UsersService;
 
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = "classpath:applicationContext.xml")  
 public class Userstest extends AbstractJUnit4SpringContextTests{
-@Autowired
-UsersService usersService;
+
+	@Autowired
+	UsersDao usersDao;
 
 @Test
 public void UsersSave(){
 	Users users=new Users("test8","123456","test8","18138059836",null);
-	usersService.save(users);
+	usersDao.save(users);
 }
 
 @Test
 public void Usersget(){
 	Users users=new Users();
-//	users=usersService.get(10);
-	users=usersService.getByUId("test1");
+	users=usersDao.get(10);
+	users=usersDao.getByUId("test1");
 	System.out.println("用户id："+users.getUsersId());
 }
 
 @Test
 public void UsersUpdate(){
 	Users users=new Users();
-	users=usersService.get(10);
+	users=usersDao.get(10);
 	System.out.println("用户id："+users.getUsersId());
 	users.setUsersId("test");
-	usersService.update(users);
-	users=usersService.get(10);
+	usersDao.update(users);
+	users=usersDao.get(10);
 	System.out.println("用户id："+users.getUsersId());
 }
 
 @Test
 public void UsersDelete(){
 	Users users=new Users();
-	users=usersService.get(10);
-	usersService.delete(users);
+	users=usersDao.get(10);
+	usersDao.delete(users);
 }
 }

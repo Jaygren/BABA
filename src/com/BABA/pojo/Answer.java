@@ -44,6 +44,10 @@ public class Answer implements Serializable {
 	@JoinColumn(name="plan_id",nullable=true)
 	private Plan plan;
 	private int answer_id;
+	@ManyToOne(targetEntity=Users.class)
+	@JoinColumn(name="to_user_id",nullable=true)
+	private Users user2;
+	
 	
 	public Answer(){}
 	public int getId() {
@@ -57,12 +61,6 @@ public class Answer implements Serializable {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public int getLikes() {
-		return likes;
-	}
-	public void setLikes(int likes) {
-		this.likes = likes;
 	}
 	public Date getDate() {
 		return date;
@@ -100,5 +98,16 @@ public class Answer implements Serializable {
 	public void setPlan(Plan plan) {
 		this.plan = plan;
 	}
-	
+	public Users getUser2() {
+		return user2;
+	}
+	public void setUser2(Users user2) {
+		this.user2 = user2;
+	}
+	public Integer getLikes() {
+		return likes;
+	}
+	public void setLikes(Integer likes) {
+		this.likes = likes;
+	}
 }

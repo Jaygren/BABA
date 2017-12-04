@@ -12,28 +12,29 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.BABA.dao.InfDao;
+import com.BABA.dao.UsersDao;
 import com.BABA.pojo.Inf;
 import com.BABA.pojo.Users;
-import com.BABA.service.InfService;
-import com.BABA.service.UsersService;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = "classpath:applicationContext.xml")  
 public class Inftest extends AbstractJUnit4SpringContextTests{
 
 	@Autowired
-	UsersService usersService;
+	UsersDao usersDao;
 	@Autowired
-    InfService infService;
+    InfDao infDao;
     
     @Test
     public void InfSave(){
     Date date=new Date(); 
     	
     Users users=new Users();
-    users=usersService.get(1);
+    users=usersDao.get(1);
     Inf inf=new Inf("test5",date,18,"发布","test5");
     inf.setUser(users);
-    infService.save(inf);
+    infDao.save(inf);
     }
 }

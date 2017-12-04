@@ -1,17 +1,18 @@
 package com.BABA.service;
 
-import java.util.List;
+import com.BABA.dao.AnswerDao;
+import com.BABA.dao.FeedbackDao;
+import com.BABA.dao.InfDao;
+import com.BABA.dao.Issue_detailDao;
+import com.BABA.dao.MomentDao;
+import com.BABA.dao.UsersDao;
 
-public interface BaseService<T> {
-//CURD
-public Integer save(Object object);
-
-public void update(Object object);
-
-public T get(int id);
-
-public List<T> list();
-
-public void delete(Object object);
-
+public interface BaseService{
+//CURD Service
+	public UsersDao usersDao();
+	public InfDao infDao();
+	public FeedbackDao feedbackDao();
+	public MomentDao momentDao();
+	public Issue_detailDao issue_detailDao();
+	public AnswerDao answerDao();
 }

@@ -13,22 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.BABA.dao.IssueDao;
+import com.BABA.dao.Issue_detailDao;
 import com.BABA.pojo.Issue_detail;
-import com.BABA.service.IssueService;
-import com.BABA.service.Issue_detailService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)  
 @ContextConfiguration(locations = "classpath:applicationContext.xml")  
 public class Issue_detailTest {
 @Autowired 
-Issue_detailService issue_detailService;
+Issue_detailDao issue_detailDao;
 @Autowired 
-IssueService issueService;
+IssueDao issueDao;
 
 @Test
 public void Issue_detailList(){
-	Set<Issue_detail> issue_details=issueService.get(1).getIssue_details();
+	Set<Issue_detail> issue_details=issueDao.get(1).getIssue_details();
 	
 	//统计数目
 	System.out.println("数目："+issue_details.size());

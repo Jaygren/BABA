@@ -1,48 +1,58 @@
 package com.BABA.service.impl;
 
-import java.lang.reflect.ParameterizedType;
-import java.util.List;
-
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import com.BABA.dao.AnswerDao;
+import com.BABA.dao.FeedbackDao;
+import com.BABA.dao.InfDao;
+import com.BABA.dao.Issue_detailDao;
+import com.BABA.dao.MomentDao;
+import com.BABA.dao.UsersDao;
 import com.BABA.service.BaseService;
 
 @Service
-public abstract class BaseServiceImpl<T> extends ServiceDelegateDAO  implements BaseService<T> {
-
-	protected Class<T> clazz;
-	@SuppressWarnings("unchecked")
-	public BaseServiceImpl() {
-		// TODO Auto-generated constructor stub
-		 ParameterizedType type = (ParameterizedType) getClass()
-	                .getGenericSuperclass();    
-		 clazz=(Class<T>) type.getActualTypeArguments()[0];  
-	}
-	
-	@Transactional
+public class BaseServiceImpl implements BaseService{
+	@Autowired
+    UsersDao usersDao;
+	@Autowired
+	InfDao infDao;
+	@Autowired
+	FeedbackDao feedbackDao;
+	@Autowired
+	MomentDao momentDao;
+	@Autowired
+	Issue_detailDao issue_detailDao;
+	@Autowired
+	AnswerDao answerDao;
 	@Override
-	public Integer save(Object object) {
+	public UsersDao usersDao() {
 		// TODO Auto-generated method stub
-		return (Integer)super.save(object);
+		return usersDao;
 	}
-	
-	@Transactional(readOnly=true)
 	@Override
-	public T get(int id) {
+	public InfDao infDao() {
 		// TODO Auto-generated method stub
-		return get(clazz,id);
+		return infDao;
 	}
-	
-	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
 	@Override
-	public List<T> list() {
+	public FeedbackDao feedbackDao() {
 		// TODO Auto-generated method stub
-		DetachedCriteria dc=DetachedCriteria.forClass(clazz);
-		dc.addOrder(Order.desc("id"));
-		return findByCriteria(dc);
+		return feedbackDao;
+	}
+	@Override
+	public MomentDao momentDao() {
+		// TODO Auto-generated method stub
+		return momentDao;
+	}
+	@Override
+	public Issue_detailDao issue_detailDao() {
+		// TODO Auto-generated method stub
+		return issue_detailDao;
+	}
+	@Override
+	public AnswerDao answerDao() {
+		// TODO Auto-generated method stub
+		return answerDao;
 	}
 }

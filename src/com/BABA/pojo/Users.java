@@ -35,16 +35,16 @@ private String tel;
 private String avater;
 @Column(length=15,nullable=true)
 private String state;
+@Column(nullable=true)
+private String IDnumber;
+@Column(nullable=true)
+private String email;
+@Column(nullable=true)
+private String realName;
 @OneToMany(mappedBy="user",cascade={CascadeType.REMOVE,CascadeType.MERGE,CascadeType.REFRESH},fetch=FetchType.EAGER,targetEntity=Moment.class)
 private Set<Moment> moments=new HashSet<Moment>();
 @OneToMany(mappedBy="user",cascade={CascadeType.REMOVE,CascadeType.MERGE,CascadeType.REFRESH},fetch=FetchType.EAGER,targetEntity=Inf.class)
 private Set<Inf> infs=new HashSet<Inf>();
-//@OneToMany(mappedBy="owner",fetch=FetchType.LAZY,targetEntity=Issue_detail.class)
-//private Set<Issue_detail> issue_details=new HashSet<Issue_detail>();
-//@OneToMany(mappedBy="owner",fetch=FetchType.LAZY,targetEntity=Answer_detail.class)
-//private Set<Answer_detail>answer_details=new HashSet<Answer_detail>();
-//@OneToMany(mappedBy="owner",fetch=FetchType.LAZY,targetEntity=Plan.class)
-//private Set<Plan>plans=new HashSet<Plan>();
 
 public Users(){}
 public Users(String usersId,String password,String onScreenName,String tel,String avater){

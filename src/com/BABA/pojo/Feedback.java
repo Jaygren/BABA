@@ -3,6 +3,7 @@ package com.BABA.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,6 +34,8 @@ public class Feedback implements Serializable {
 	@ManyToOne(targetEntity=Users.class)
 	@JoinColumn(name="user_id",nullable=true)
 	private Users user;
+	@Column(length=15)
+	private String state;
 	public Feedback(){}
 	public int getId() {
 		return id;
@@ -70,5 +73,10 @@ public class Feedback implements Serializable {
 	public void setUser(Users user) {
 		this.user = user;
 	}
-	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 }
