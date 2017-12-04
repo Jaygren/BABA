@@ -12,6 +12,7 @@
                             <li><a href="inf_publishing.action">发布中资讯</a></li>
                             <li><a href="inf_toBePublished.action">待发布资讯</a></li>
                             <li><a href="inf_contributions.action">最新投稿资讯</a></li>
+                            <li><a href="inf_rectification.action">已下架资讯</a></li>
                         </ul></li>
                 <li><a href="issue.action"><i class="glyphicon glyphicon-comment"></i>问答平台数据管理</a></li>
                 

@@ -41,23 +41,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                </tr>
 				              </thead>
 				              <tbody>
-				               <s:iterator value="feedbacks" var="fd">
+				               <s:iterator value="feedbacks" var="fb" status="stu">
 				                <tr>
-				                  <td><s:property value="#fd.id"/></td>
-				                  <s:if test="#fd.table_from=='inf'">
+				                  <td><s:property value="#stu.count"/></td>
+				                  <s:if test="#fb.table_from=='Inf'">
 				                  <td>资讯反馈</td>
 				                  </s:if>
 				                  <s:else>
 				                  <td>问答举报</td>
 				                  </s:else>
-				                  <td><a href="feedback_details.jsp"><s:property value="#fd.content"/></a></td>
-				                  <td><s:property value="#fd.user.usersId"/></td>
-				                  <td><s:property value="#fd.date"/></td>
-				                  <s:if test="#fd.state=='已处理'">
-				                   <td>已处理</td>
+				                  <s:if test="#fb.state=='已处理'">
+				                  <td><a href="feedback_result.action?id=<s:property value="#fb.id"/>" target="_blank"><s:property value="#fb.content"/></a></td>
+				                  <td><s:property value="#fb.user.usersId"/></td>
+				                  <td><s:date name="#fb.date" format="yyyy-MM-dd  hh:mm:ss"/></td>	
+				                  <td>已处理</td>
 				                  </s:if>
 				                  <s:else>
-				                   <td style="color:red;">未处理</td>
+				                  <td><a href="feedback_details.action?id=<s:property value="#fb.id"/>" target="_blank"><s:property value="#fb.content"/></a></td>
+				                  <td><s:property value="#fb.user.usersId"/></td>
+				                  <td><s:date name="#fb.date" format="yyyy-MM-dd  hh:mm:ss"/></td>	
+				                  <td style="color:red;">未处理</td>
 				                  </s:else>
 				                </tr>
 				                </s:iterator>

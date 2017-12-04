@@ -43,6 +43,16 @@ public String inf_contributions(){
 	infs=baseService.infDao().listInfByState("投稿");
 	return "inf_contributions";
 }
+@Action("inf_rectification")
+public String inf_rectification(){
+	infs=baseService.infDao().listInfByState("下架");
+	return "inf_contributions";
+}
+@Action("issue")
+public String issue(){
+	issue_details=baseService.issue_detailDao().list();
+	return "issue";
+}
 @Action("moment")
 public String moment(){
 	moments=baseService.momentDao().list();
@@ -53,9 +63,14 @@ public String feedback(){
 	feedbacks=baseService.feedbackDao().list();
 	return "feedback";
 }
-@Action("issue")
-public String issue(){
-	issue_details=baseService.issue_detailDao().list();
-	return "issue";
+@Action("feedback_details")
+public String feedback_details(){
+	feedback=baseService.feedbackDao().get(id);
+	return "feedback_details";
+}
+@Action("feedback_result")
+public String feedback_result(){
+	feedback=baseService.feedbackDao().get(id);
+	return "feedback_result";
 }
 }
