@@ -26,7 +26,13 @@ public class Feedback implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id;
 	String table_from;
-	String id_from;
+	@ManyToOne(targetEntity=Issue_detail.class)
+	@JoinColumn(name="issue_id",nullable=true)
+	private Issue_detail issue_detail;
+	@ManyToOne(targetEntity=Inf.class)
+	@JoinColumn(name="inf_id",nullable=true)
+	private Inf inf;
+    String title;
 	@Lob
 	String content;
 	@Temporal(value=TemporalType.TIMESTAMP)
@@ -49,11 +55,17 @@ public class Feedback implements Serializable {
 	public void setTable_from(String table_from) {
 		this.table_from = table_from;
 	}
-	public String getId_from() {
-		return id_from;
+	public Issue_detail getIssue_detail() {
+		return issue_detail;
 	}
-	public void setId_from(String id_from) {
-		this.id_from = id_from;
+	public void setIssue_detail(Issue_detail issue_detail) {
+		this.issue_detail = issue_detail;
+	}
+	public Inf getInf() {
+		return inf;
+	}
+	public void setInf(Inf inf) {
+		this.inf = inf;
 	}
 	public String getContent() {
 		return content;
@@ -79,4 +91,11 @@ public class Feedback implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 }

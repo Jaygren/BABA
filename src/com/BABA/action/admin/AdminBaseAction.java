@@ -1,5 +1,4 @@
 package com.BABA.action.admin;
-
 import org.apache.struts2.convention.annotation.Action;
 
 public class AdminBaseAction extends Action4Result{
@@ -48,6 +47,36 @@ public String inf_rectification(){
 	infs=baseService.infDao().listInfByState("下架");
 	return "inf_contributions";
 }
+@Action("delete_inf")
+public String delete_inf(){
+    inf=baseService.infDao().get(id);
+    baseService.infDao().delete(inf);
+    if(type==1)
+	    return "delete_inf1";
+    else if (type==2)
+    	return "delete_inf2";
+    else if (type==3)
+    	return "delete_inf3";
+    else
+    	return "delete_inf4";
+}
+@Action("modify_inf_state")
+public String modify_inf_state(){
+    inf=baseService.infDao().get(id);
+    if(type==1){
+    	inf.setState("下架");
+    	baseService.infDao().update(inf);
+        return 	"modify_inf_state1";
+    }else if(type==2){
+    	inf.setState("发布");
+    	baseService.infDao().update(inf);
+    	return "modify_inf_state2";	
+    }else{
+    	inf.setState("待发布");
+    	baseService.infDao().update(inf);
+    	return "modify_inf_state3";	
+    }
+}
 @Action("issue")
 public String issue(){
 	issue_details=baseService.issue_detailDao().list();
@@ -57,6 +86,15 @@ public String issue(){
 public String moment(){
 	moments=baseService.momentDao().list();
 	return "moment";
+}
+@Action("delete_moment")
+public String delete_moment(){
+	moment=baseService.momentDao().get(id);
+    baseService.momentDao().delete(moment);
+    if(type==1){
+    	return "delete_moment1";
+    }
+	return "delete_moment";
 }
 @Action("feedback")
 public String feedback(){
@@ -72,5 +110,20 @@ public String feedback_details(){
 public String feedback_result(){
 	feedback=baseService.feedbackDao().get(id);
 	return "feedback_result";
+}
+@Action("feedback_details_operation")
+public String feedback_details_operation(){
+    feedback=baseService.feedbackDao().get(id);
+    feedback.setState("已处理");
+    System.out.println(feedback.getState());
+    baseService.feedbackDao().update(feedback);
+    if(type==1)
+    	return "delete_inf1";
+    else if (type==2) {
+        inf=baseService.infDao().get(feedback.getInf().getId());
+    	inf.setState("下架");
+        baseService.infDao().update(inf);
+    	return "modify_inf_state1";}
+	return null;
 }
 }

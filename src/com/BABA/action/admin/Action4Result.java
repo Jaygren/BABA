@@ -33,7 +33,18 @@ import org.apache.struts2.convention.annotation.Results;
       		   @Result(name="feedback_result",location="/admin/feedback_result.jsp"),
 		/*用户操作*/
 		@Result(name="delete_user",type="redirectAction",location="user_list.action"),
-		@Result(name="modify_user_state",type="redirectAction",location="user_list.action")
+		@Result(name="modify_user_state",type="redirectAction",location="user_list.action"),
+		/*咨询操作*/
+		@Result(name="delete_inf1",type="redirectAction",location="inf_publishing.action"),
+		@Result(name="delete_inf2",type="redirectAction",location="inf_toBePublished.action"),
+		@Result(name="delete_inf3",type="redirectAction",location="inf_contributions.action"),
+		@Result(name="delete_inf4",type="redirectAction",location="inf_rectification.action"),
+		@Result(name="modify_inf_state1",type="redirectAction",location="inf_rectification.action"),
+		@Result(name="modify_inf_state2",type="redirectAction",location="inf_publishing.action"),
+		@Result(name="modify_inf_state3",type="redirectAction",location="inf_toBePublished.action"),
+		/*分享操作*/
+		@Result(name="delete_moment",type="redirectAction",location="moment.action"),
+		@Result(name="delete_moment1",type="redirectAction",location="user_managment_moment.action")
 		})
 public class Action4Result extends Action4Parameter{
 

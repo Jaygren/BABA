@@ -32,16 +32,53 @@
 							</tr>
 							<tr>
 							<td>被举报/反馈对象</td>
-							<td><a href="#" data-type="text" class="editable editable-click editable-empty">XXXX是什么体验-XXX的回答</a>
+							 <s:if test='feedback.table_from == "Inf"'>
+							<td><a href="#" data-type="text" class="editable editable-click editable-empty"><s:property value="feedback.inf.title"/></a>
               </td>
+                             </s:if>
+                             <s:else>
+                            <td><a href="#" data-type="text" class="editable editable-click editable-empty"><s:property value="feedback.issue_detail.title"/></a>
+              </td>
+                             </s:else>
               </tr>
               <tr>
               <td>被举报/反馈原因</td>
-              <td>不实信息</td>
+              <td><s:property value="feedback.title"/></td>
               </tr>
 							<tr>
 							<td>被举报/反馈详细说明</td>
 							<td><s:property value="feedback.content"/></td>
+							</tr>
+							<tr>
+							<td>
+							状态
+							</td>
+							<td>
+							<s:property value="feedback.inf.state"/>
+							</td>
+							</tr>
+							<tr>
+							<td>
+							操作处理
+							</td>
+							<td>
+							<div class="btn-group">
+
+					                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">处理
+					                    	<span class="caret"></span>
+					                    	<span class="sr-only">Toggle Dropdown</span>
+					                    </button>
+					                    <ul class="dropdown-menu" role="menu">
+					                       <s:if test="feedback.table_from =='Inf'">
+                                          <li><a href="feedback_details_operation.action?id=<s:property value="feedback.id"/>&type=1">删除</a></li>
+					                      <li><a href="feedback_details_operation.action?id=<s:property value="feedback.id"/>&type=2">下架整改</a></li>
+                                           </s:if>
+                                           <s:else>
+                                           <option>删除</option>
+                                           </s:else>
+					                    </ul>
+                  					</div>
+							</td>
 							</tr>
 
 						</tbody>
@@ -54,7 +91,7 @@
           <div class="panel-heading">
                  <div class="panel-title">处理操作</div>
           </div>
-          <div class="panel-body">
+         <!--  <div class="panel-body">
             <form class="form-horizontal" action="">
               <div class="form-group">
                       <label class="col-md-2 control-label" for="select-1">处理回应</label>
@@ -63,8 +100,8 @@
                         <select class="form-control" id="select-1">
                         
                          <s:if test="feedback.table_from =='Inf'">
-                          <option>删除</option>
-                          <option>下架</option>
+                          <a href="delete_inf.action?id=<s:property value="#inf.id"/>&inf_type=1"><option>删除</option></a>
+                          <a href="modify_inf_state.action?id=<s:property value="#inf.id"/>&inf_type=1"><option>下架</option></a>
                          </s:if>>
                          <s:else>
                          <option>删除</option>
@@ -76,11 +113,11 @@
               <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                     <button type="submit" class="btn btn-danger">确认</button>
-                  </div>
-              </div>
+                  </div>  
+              </div> 
             </form>
           </div>
-        </div>
+        </div>-->	
 
         		<div class="content-box-large">
       				<div class="panel-heading">

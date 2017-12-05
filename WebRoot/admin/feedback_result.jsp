@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
   <head>
     <title>蹦跶蹦跶BABA后台系统</title>
@@ -18,24 +19,45 @@
   						<tbody> 
 							<tr>         
 							<td width="35%">举报/反馈模块</td>
-							<td width="65%">问答举报</td>
+							<s:if test='feedback.table_from == "Inf"'>
+							<td width="65%">资讯反馈</td>	
+							</s:if>
+							<s:else>
+							<td width="65%">问答举报</td>	
+							</s:else>
 							</tr>
 							<tr>         
 							<td>举报/反馈用户ID</td>
-							<td><a href="#" data-type="text"  class="editable editable-click editable-empty">1540129502</a></td>
+							<td><a href="#" data-type="text"  class="editable editable-click editable-empty"><s:property value="feedback.user.usersId"/></a></td>
 							</tr>
 							<tr>         
 							<td>被举报/反馈对象</td>
-							<td><a href="#" data-type="text" class="editable editable-click editable-empty">XXXX是什么体验-XXX的回答</a>
+							<s:if test='feedback.table_from == "Inf"'>
+							    <s:if test="feedback.inf.id ==null">
+							    <td>目标已删除</td>
+							    </s:if>
+							    <s:else>
+							<td><a href="#" data-type="text" class="editable editable-click editable-empty"><s:property value="feedback.inf.title"/></a>
               </td>
+                                </s:else>
+                             </s:if>
+                             <s:else>
+                            <s:if test="feedback.issue.id ==null">
+							    <td>目标已删除</td>
+							</s:if>
+							 <s:else>
+                            <td><a href="#" data-type="text" class="editable editable-click editable-empty"><s:property value="feedback.issue_detail.title"/></a>
+              </td>
+                            </s:else>
+                            </s:else>
               </tr>
               <tr>         
               <td>被举报/反馈原因</td>
-              <td>对蹦跶蹦跶平台有害的内容-政治敏感</td>
-              </tr>   
-							<tr>         
+              <td><s:property value="feedback.title"/></td>
+              </tr>
+							<tr>
 							<td>被举报/反馈详细说明</td>
-							<td>不符合建设社会主义核心价值观</td>
+							<td><s:property value="feedback.content"/></td>
 							</tr>
 						</tbody>
   					</table>
@@ -47,12 +69,22 @@
             <table class="table table-bordered table-striped" style="clear: both">
               <tbody> 
               <tr>         
-              <td width="35%">处理回应</td>
-              <td width="65%">已删除该回答</td>
+              <td width="35%">处理回应</td>  
+             <s:if test='feedback.table_from == "Inf"'>
+					<s:if test="feedback.inf.id ==null">
+				    <td width="65%">已删除该咨询</td>
+				    </s:if>
+				    <s:else>
+				    <td width="65%">已下架该咨询</td>
+                    </s:else>
+              </s:if>
+              <s:else>
+	     		    <td width="65%">已删除该问题</td>
+			  </s:else>
               </tr>
               <tr>         
               <td>补充说明</td>
-              <td>已核实XXXXXXXX，XXXXXXXXX，XXXXXXX，XXXXXXXX，XXXXXXX。感谢XXXXXX。</td>
+              <td></td>
               </tr>                                              
             </tbody>
             </table>

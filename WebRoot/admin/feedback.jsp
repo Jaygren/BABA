@@ -51,13 +51,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				                  <td>问答举报</td>
 				                  </s:else>
 				                  <s:if test="#fb.state=='已处理'">
-				                  <td><a href="feedback_result.action?id=<s:property value="#fb.id"/>" target="_blank"><s:property value="#fb.content"/></a></td>
+				                  <td><a href="feedback_result.action?id=<s:property value="#fb.id"/>" target="_blank"><s:property value="#fb.title"/></a></td>
 				                  <td><s:property value="#fb.user.usersId"/></td>
 				                  <td><s:date name="#fb.date" format="yyyy-MM-dd  hh:mm:ss"/></td>	
 				                  <td>已处理</td>
 				                  </s:if>
 				                  <s:else>
-				                  <td><a href="feedback_details.action?id=<s:property value="#fb.id"/>" target="_blank"><s:property value="#fb.content"/></a></td>
+				                  <td><a href="feedback_details.action?id=<s:property value="#fb.id"/>" target="_blank"><s:property value="#fb.title"/></a></td>
 				                  <td><s:property value="#fb.user.usersId"/></td>
 				                  <td><s:date name="#fb.date" format="yyyy-MM-dd  hh:mm:ss"/></td>	
 				                  <td style="color:red;">未处理</td>

@@ -54,8 +54,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					                    	<span class="sr-only">Toggle Dropdown</span>
 					                    </button>
 					                    <ul class="dropdown-menu" role="menu">
-					                      <li><a href="#">删除</a></li>
-					                      <li><a href="#">下架整改</a></li>
+					                      <li><a href="delete_inf.action?id=<s:property value="#inf.id"/>&type=1">删除</a></li>
+					                      <li><a href="modify_inf_state.action?id=<s:property value="#inf.id"/>&type=1">下架整改</a></li>
 					                    </ul>
                   					</div>
 				                  </td>
