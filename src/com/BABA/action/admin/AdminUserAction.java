@@ -2,6 +2,8 @@ package com.BABA.action.admin;
 
 import org.apache.struts2.convention.annotation.Action;
 
+import com.BABA.action.Action4Result;
+
 public class AdminUserAction extends Action4Result{
 	@Action("user_management")
 	public String user_management(){

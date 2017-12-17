@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <!-- Site Properties -->
+  <title>issue_answer_list</title>
+
+  <link rel="stylesheet" type="text/css" href="../dist/components/reset.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/site.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/container.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/menu.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/dropdown.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/transition.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/icon.css">
+  <link rel="stylesheet" type="text/css" href="../dist/semantic.css">
+  <link rel="stylesheet" type="text/css" href="../dist/components/icon.css">
+
+  <script src="../dist/jquery.min.js"></script>
+  <script src="../dist/components/transition.js"></script>
+  <script src="../dist/components/visibility.js"></script>
+  <script src="../dist/components/dropdown.js"></script>
+  <script src="../dist/semantic.js"></script>
+
+<script>
+  $(document)
+    .ready(function() {
+      // fix main menu to page on passing
+      $('.main.menu').visibility({
+        type: 'fixed'
+      });
+      // show dropdown on hover
+      $('.main.menu  .ui.dropdown').dropdown({
+        on: 'hover'
+      });
+      $('.ui.dropdown')
+        .dropdown()
+      ;
+      $('.feedback_modal').on('click', function() {
+      $('.modal.the_feedback_modal')
+        .modal('show')
+        ;
+      });
+      $('.comment_modal').on('click', function() {
+      $('.modal.the_comment_modal')
+        .modal('show')
+        ;
+      });
+      $('.answer_modal').on('click', function() {
+      $('.modal.the_answer_modal')
+        .modal('show')
+        ;
+      });
+    })
+  ;
+</script>
+
+<style type="text/css">
+
+  body {
+    background-color: #F3F3F3;
+  }
+  .main.container {
+    margin-top: 1em;
+  }
+
+  .main.menu {
+    margin-top: 1em;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    transition:
+      box-shadow 0.5s ease,
+      padding 0.5s ease
+    ;
+  }
+  .main.menu .item img.logo {
+    margin-right: 1.5em;
+  }
+
+  .main.menu.fixed {
+    background-color: #ffffff;
+    border: 1px solid #DDD;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .ui.footer.segment {
+    margin: 5em 0em 0em;
+    padding: 5em 0em;
+  }
+  a{
+    color:#1B1C1D;
+  }
+  #answer_content{
+    width:650px;
+    height:100px;
+    overflow-y:hidden;
+    }
+  #issue_description{
+      width:650px;
+      height:80px;
+      overflow-y:hidden;
+    }
+</style>
+
+</head>
+<body>
+  <div class="ui borderless main menu" style="margin:0px;">
+    <div class="ui text container">
+      <div href="#" class="header item">
+        <img class="logo" src="../images/baba.png">
+        蹦跶蹦跶BABA
+      </div>
+      <a href="#" class="item">INF</a>
+      <a href="#" class="item">ISSUE</a>
+      <a href="#" class="item">PLAN</a>
+      <a href="#" class="item">MOMENT</a>
+      <a href="#" class="ui right floated dropdown item">
+        <img src="../images/rachel.png" class="ui avatar image"/>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item">Personal</div>
+          <div class="item">Message</div>
+          <div class="divider"></div>
+          <div class="header">ACTION</div>
+          <div class="item">Log out</div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="ui segment" style="margin-top:0px;">
+    <div class="ui container">
+      <div class="ui three column grid">
+        <div class="one wide column"></div>
+        <div class="ten wide column" style="margin-top:20px;">
+          <div class="ui huge header">如何看待XXXXXX?</div>
+          <div class="content" id="issue_description">
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+            A description which may flow for several lines and give context to the content.
+          </div>
+          <div class="extra" style="margin-top:5px;">
+              <a id="issue_more" href="#" style="visibility:hidden;">
+                显示全部<i class="angle down icon"></i>
+              </a>
+              <br>
+              <a id="issue_more_close" href="#" style="visibility:hidden;">
+                收起<i class="angle up icon"></i>
+              </a>
+          </div>
+          <div class="extra" style="margin-top:10px;">
+            <button class="ui basic button answer_modal">
+              <i class="icon write"></i>
+              写回答
+            </button>&nbsp;&nbsp;
+            <a href="###" class="comment_modal"><i class="comment icon"></i>100条评论</a>
+          </div>
+        </div>
+        <div class="five wide column"></div>
+      </div>
+    </div>
+  </div>
+  <div class="ui container">
+    <div class="ui two column grid">
+      <div class="twelve wide column">
+          <div class="row">
+            <div class="ui card" style="width:100%; margin-top:20px;">
+              <div class="content">
+                <div class="left floated author">
+                  <img class="ui avatar image" src="../images/matt.jpg"> Matt
+                </div>
+                <span class="right floated time">2 days ago</span>
+              </div>
+              <div class="content">
+                <div class="header"></div>
+                <div class="description" id="answer_content" name="answer_content">
+                  <p>
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                  </p>
+                </div>
+                <div class="extra" style="margin-top:5px;">
+                  <center>
+                    <a name="answer_more" href="###" style="visibility:hidden;" >
+                      展开阅读全文<i class="angle down icon"></i>
+                    </a>
+                    <br>
+                    <a name="answer_more_close" href="###" style="visibility:hidden;" >
+                      收起<i class="angle up icon"></i>
+                    </a>
+                  </center>
+                </div>
+              </div>
+              <div class="extra content">
+                <a >
+                 <i class="like icon"></i> 4 Likes
+               </a>&nbsp;
+                <a href="###" class="comment_modal">
+                  <i class="comment icon"></i> 100条评论
+                </a>
+                <span class="right floated">
+                  <div class="ui dropdown">
+                    <div class="text">More</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                      <div class="item feedback_modal">Report</div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="ui card" style="width:100%; margin-top:20px;">
+              <div class="content">
+                <div class="left floated author">
+                  <img class="ui avatar image" src="../images/jenny.jpg"> jenny
+                </div>
+                <span class="right floated time">2 days ago</span>
+              </div>
+              <div class="content">
+                <div class="header"></div>
+                <div class="description" id="answer_content" name="answer_content">
+                  <p>
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                  </p>
+                </div>
+                <div class="extra" style="margin-top:5px;">
+                  <center>
+                    <a name="answer_more" href="###" style="visibility:hidden;" >
+                      展开阅读全文<i class="angle down icon"></i>
+                    </a>
+                    <br>
+                    <a name="answer_more_close" href="###" style="visibility:hidden;" >
+                      收起<i class="angle up icon"></i>
+                    </a>
+                  </center>
+                </div>
+              </div>
+              <div class="extra content">
+                <a >
+                 <i class="like icon"></i> 4 Likes
+               </a>&nbsp;
+                <a >
+                  <i class="comment icon"></i> 100条评论
+                </a>
+                <span class="right floated">
+                  <div class="ui dropdown">
+                    <div class="text">More</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                      <div class="item feedback_modal">Report</div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="ui card" style="width:100%; margin-top:20px;">
+              <div class="content">
+                <div class="left floated author">
+                  <img class="ui avatar image" src="../images/stevie.jpg"> stevie
+                </div>
+                <span class="right floated time">2 days ago</span>
+              </div>
+              <div class="content">
+                <div class="header"></div>
+                <div class="description" id="answer_content" name="answer_content">
+                  <p>
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                    A description which may flow for several lines and give context to the content.
+                  </p>
+                </div>
+                <div class="extra" style="margin-top:5px;">
+                  <center>
+                    <a name="answer_more" href="###" style="visibility:hidden;" >
+                      展开阅读全文<i class="angle down icon"></i>
+                    </a>
+                    <br>
+                    <a name="answer_more_close" href="###" style="visibility:hidden;" >
+                      收起<i class="angle up icon"></i>
+                    </a>
+                  </center>
+                </div>
+              </div>
+              <div class="extra content">
+                <a >
+                 <i class="like icon"></i> 4 Likes
+               </a>&nbsp;
+                <a >
+                  <i class="comment icon"></i> 100条评论
+                </a>
+                <span class="right floated">
+                  <div class="ui dropdown">
+                    <div class="text">More</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                      <div class="item feedback_modal">Report</div>
+                    </div>
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="four wide column">
+        <div class="ui header"  style="margin-top:20px;">更多精彩问题</div>
+        <div class="ui raised segments">
+          <div class="ui segment">
+            <a href="#">XXXXX是一种什么体验？</a>
+          </div>
+          <div class="ui segment">
+            <a href="#">为什么XXXXXX？</a>
+          </div>
+          <div class="ui segment">
+            <a href="#">2017年，你拍过哪些美好的照片？</a>
+          </div>
+          <div class="ui segment">
+            <a href="#">哪些消费不高、不用签证的国家适合旅行？</a>
+          </div>
+          <div class="ui segment">
+            <a href="#">如何不坐飞机环球旅行？</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui inverted vertical footer segment">
+    <div class="ui center aligned container">
+      <img src="../images/baba.png" class="ui centered mini image">
+      <div class="ui horizontal inverted small divided link list">
+        <a class="item" href="#">Contact Us</a>
+        <a class="item" href="#">Privacy Policy</a>
+      </div>
+    </div>
+  </div>
+  <div class="ui modal the_feedback_modal">
+    <i class="close icon"></i>
+    <div class="header">
+      举报
+    </div>
+    <div class="content">
+      <div class="ui form">
+        <h4 class="ui dividing header">给出您的举报理由</h4>
+        <div class="field">
+          <textarea></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui button">Cancel</div>
+      <div class="ui green button">Send</div>
+    </div>
+  </div>
+  <div class="ui modal the_comment_modal">
+    <i class="close icon"></i>
+    <div class="header">
+      查看评论
+    </div>
+    <div class="content" style="width:100%;height:450px;overflow:auto;">
+      <div class="ui comments" >
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/christian.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Christian Rocha</a>
+            <div class="metadata">
+              <div class="date">2 天前</div>
+            </div>
+            <div class="text">我转推了该信息。 </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/christian.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Christian Rocha</a>
+            <div class="metadata">
+              <div class="date">2 天前</div>
+            </div>
+            <div class="text">我转推了该信息。 </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/christian.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Christian Rocha</a>
+            <div class="metadata">
+              <div class="date">2 天前</div>
+            </div>
+            <div class="text">我转推了该信息。 </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/christian.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Christian Rocha</a>
+            <div class="metadata">
+              <div class="date">2 天前</div>
+            </div>
+            <div class="text">我转推了该信息。 </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/christian.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Christian Rocha</a>
+            <div class="metadata">
+              <div class="date">2 天前</div>
+            </div>
+            <div class="text">我转推了该信息。 </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/joe.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Joe Henderson</a>
+            <div class="metadata">
+              <div class="date">1 天以前</div>
+            </div>
+            <div class="text">
+              <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there.Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
+            </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/jenny.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Jenny</a>
+            <div class="metadata">
+              <div class="date">1 天前</div>
+            </div>
+            <div class="text">hhhhhhhhhhh </div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/stevie.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Stevie</a> 回复 <a class="author">Jenny</a>
+            <div class="metadata">
+              <div class="date">16小时前</div>
+            </div>
+            <div class="text">66666</div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+        <div class="comment">
+          <a class="avatar">
+            <img src="../images/stevie.jpg">
+          </a>
+          <div class="content">
+            <a class="author">Stevie</a> 回复 <a class="author">Christian Rocha</a>
+            <div class="metadata">
+              <div class="date">16小时前</div>
+            </div>
+            <div class="text">不要刷屏</div>
+            <div class="actions">
+              <a class="reply">Reply</a>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="row content">
+    <form class="ui reply form">
+      <div class="field">
+        <textarea rows="1"></textarea>
+      </div>
+      <div class="ui blue labeled submit icon button">
+        <i class="icon edit"></i> Add Reply
+      </div>
+    </form>
+    </div>
+  <div class="ui modal the_answer_modal">
+      <i class="close icon"></i>
+      <div class="header aligned center">
+        写下你的回答
+      </div>
+      <div class="content">
+        <div class="ui trhee column grid">
+          <div class="two wide column"></div>
+          <div class="twelve wide column">
+            <div class="ui form">
+              <div class="field">
+                <textarea type="text" placeholder="富文本编辑器"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="two wide column"></div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="ui button">取消</div>
+        <div class="ui green button">提交回答</div>
+      </div>
+  </div>
+  <script>
+    var issue_more = document.getElementById('issue_more');
+    var obj = document.getElementById('issue_description');
+    var issue_more_close = document.getElementById('issue_more_close');
+        var total_height =  obj.scrollHeight;//文章总高度
+        var show_height = 80;//定义原始显示高度
+        if(total_height>show_height){
+        issue_more.style.visibility = 'visible';
+        issue_more.onclick = function(){
+        obj.style.height = total_height + 'px';
+        issue_more.style.visibility = 'hidden';
+        issue_more_close.style.visibility = 'visible';
+        }
+      }
+        issue_more_close.onclick = function(){
+        obj.style.height = show_height + 'px';
+        issue_more_close.style.visibility = 'hidden';
+        issue_more.style.visibility = 'visible';
+        }
+
+        var answer_more = document.getElementsByName('answer_more');
+        var answer_content = document.getElementsByName('answer_content');
+        var answer_more_close = document.getElementsByName('answer_more_close');
+        var total_height1 = new Array();
+        var show_height1 = 100;//定义原始显示高度
+        for (var i = 0; i < answer_more.length; i++) {
+          total_height1[i] =  answer_content[i].scrollHeight;//文章总高度
+           if (total_height1[i]>show_height1) {
+            answer_more[i].style.visibility = 'visible';
+          }
+        }
+        for (var i = 0; i < answer_more.length; i++) {
+        if(total_height1[i]>show_height1){
+            answer_more[i].index = i;
+            answer_more[i].onclick = function(){
+            answer_content[this.index].style.height = total_height1[this.index] + 'px';
+            answer_more[this.index].style.visibility = 'hidden';
+            answer_more_close[this.index].style.visibility = 'visible';
+            }
+          }
+      }
+      for(var i=0;i< answer_more.length;i++){
+        answer_more_close[i].index=i;
+        answer_more_close[i].onclick = function(){
+          answer_content[this.index].style.height = show_height1 + 'px';
+          answer_more_close[this.index].style.visibility = 'hidden';
+          answer_more[this.index].style.visibility = 'visible';
+        }
+
+      }
+
+    </script>
+</body>
+</html>

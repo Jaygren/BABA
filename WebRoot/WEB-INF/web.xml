@@ -9,7 +9,7 @@
   <filter>
     <filter-name>struts2</filter-name>
     <filter-class>
-			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter	
+			com.BABA.filter.BabaStruts2Filter
 		</filter-class>
   </filter>
   <filter-mapping>

@@ -33,6 +33,7 @@ public class Inf implements Serializable {
 @Column(unique=true)
 private int id;
 private String title;
+private String description;
 @Lob
 private String content;
 @Temporal(value=TemporalType.TIMESTAMP)
@@ -102,4 +103,14 @@ public Set<Answer> getAnswers() {
 public void setAnswers(Set<Answer> answers) {
 	this.answers = answers;
 }
+public String getDescription() {
+	return description;
+}
+public void setDescription(String description) {
+	this.description = description;
+}
+public void setLikes(Integer likes) {
+	this.likes = likes;
+}
+
 }
